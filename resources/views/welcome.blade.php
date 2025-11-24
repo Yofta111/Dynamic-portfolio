@@ -89,11 +89,11 @@
                     <div class="relative">
                         <div class="thumb">
                             <div class="overlay overlay-bg"></div>
-                            <img class="image img-fluid" src="images/Graphics%20design.jpg" alt="">
+                            <img class="image img-fluid" src="{{asset('frontend/images/Graphics%20design.jpg')}}" alt="">
                         </div>
                         <a href="images/p2.jpg" class="img-pop-up">
                             <div class="middle">
-                                <div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>
+                                <div class="text align-self-center d-flex"><img src="{{asset('frontend/images/preview.html')}}" alt=""></div>
                             </div>
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                     <div class="relative">
                         <div class="thumb">
                             <div class="overlay overlay-bg"></div>
-                            <img class="image img-fluid" src="images/web.jpg" alt="">
+                            <img class="image img-fluid" src="{{asset('frontend/images/web.jpg')}}" alt="">
                         </div>
                         <a href="images/p3.jpg" class="img-pop-up">
                             <div class="middle">
@@ -120,64 +120,7 @@
                         <div class="cat">Student</div>
                     </div>
                 </div>
-                <!--					<div class="single-portfolio col-sm-4 all packaging">-->
-                <!--						<div class="relative">-->
-                <!--							<div class="thumb">-->
-                <!--								<div class="overlay overlay-bg"></div>-->
-                <!--								<img class="image img-fluid" src="images/p4.jpg" alt="">-->
-                <!--							</div>-->
-                <!--							<a href="images/p4.jpg" class="img-pop-up">  -->
-                <!--								<div class="middle">-->
-                <!--									<div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>-->
-                <!--								</div>-->
-                <!--							</a>                                -->
-                <!--						</div> -->
-                <!--						<div class="p-inner">-->
-                <!--							<h4>Packaging Brand</h4>-->
-                <!--							<div class="cat">Packaging</div>-->
-                <!--						</div>-->
-                <!--					</div>-->
-                <!--					<div class="single-portfolio col-sm-4 all typography">-->
-                <!--						<div class="relative">-->
-                <!--							<div class="thumb">-->
-                <!--								<div class="overlay overlay-bg"></div>-->
-                <!--								<img class="image img-fluid" src="images/p5.jpg" alt="">-->
-                <!--							</div>-->
-                <!--							<a href="images/p5.jpg" class="img-pop-up">  -->
-                <!--								<div class="middle">-->
-                <!--									<div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>-->
-                <!--								</div>-->
-                <!--							</a>                                -->
-                <!--						</div>-->
-                <!--						<div class="p-inner">-->
-                <!--							<h4>Isometric 3D Extrusion</h4>-->
-                <!--							<div class="cat">Typography</div>-->
-                <!--						</div>-->
-                <!--					</div>-->
-                <!--					<div class="single-portfolio col-sm-4 all photography">-->
-                <!--						<div class="relative">-->
-                <!--							<div class="thumb">-->
-                <!--								<div class="overlay overlay-bg"></div>-->
-                <!--								<img class="image img-fluid" src="images/p6.jpg" alt="">-->
-                <!--							</div>-->
-                <!--							<a href="images/p6.jpg" class="img-pop-up">  -->
-                <!--								<div class="middle">-->
-                <!--									<div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>-->
-                <!--								</div>-->
-                <!--							</a>                                -->
-                <!--						</div>-->
-                <!--						<div class="p-inner">-->
-                <!--							<h4>White Space Photography</h4>-->
-                <!--							<div class="cat">photography</div>-->
-                <!--						</div>-->
-                <!--					</div>-->
-                <!--				</div>-->
-                <!--			</div>-->
-                <!--		</div>-->
 </section>
-<!-- .section -->
-
-
 <section class="site-section " id="section-resume">
     <div class="container">
         <div class="row">
@@ -203,21 +146,6 @@
                         I embraced new challenges and began to see myself as part of a larger academic and professional community.</p>
                     <span class="school">Addis Ababa University</span>
                 </div>
-
-                <!--					<div class="resume-item mb-4">-->
-                <!--						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>-->
-                <!--						<h3>Masteral in Information Technology</h3>-->
-                <!--						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
-                <!--						<span class="school">New York University</span>-->
-                <!--					</div>-->
-
-                <!--					<div class="resume-item mb-4">-->
-                <!--						<span class="date"><span class="icon-calendar"></span> March 2013 - Present Deacember.</span>-->
-                <!--						<h3>Masteral in Information Technology</h3>-->
-                <!--						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
-                <!--						<span class="school">New York University</span>-->
-                <!--					</div>-->
-
             </div>
             <div class="col-md-6">
 
@@ -238,31 +166,16 @@
                     <span class="school">HiLCoE School of Computer Science & Technology</span>
                 </div>
 
-                <!--					<div class="resume-item mb-4">-->
-                <!--						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>-->
-                <!--						<h3>Lead Product Designer</h3>-->
-                <!--						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
-                <!--						<span class="school">Twitter</span>-->
-                <!--					</div>-->
-
-                <!--					<div class="resume-item mb-4">-->
-                <!--						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>-->
-                <!--						<h3>Lead Product Designer</h3>-->
-                <!--						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
-                <!--						<span class="school">Shopify</span>-->
-                <!--					</div>-->
-
-
             </div>
         </div>
     </div>
-</section> <!-- .section -->
+</section>
 
 <section class="site-section" id="section-about">
     <div class="container">
         <div class="row mb-5 align-items-center">
             <div class="col-lg-7 pr-lg-5 mb-5 mb-lg-0">
-                <img src="images/face.jpg" alt="Image placeholder" class="img-fluid">
+                <img src="{{asset('frontend/images/face.jpg')}}" alt="Image placeholder" class="img-fluid">
             </div>
             <div class="col-lg-5 pl-lg-5">
                 <div class="section-heading">
@@ -296,7 +209,7 @@
 
                 <div class="block-47 d-flex mb-5">
                     <div class="block-47-image">
-                        <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid">
+                        <img src="{{asset('frontend/images/person_2.jpg')}}" alt="Image placeholder" class="img-fluid">
                     </div>
                     <blockquote class="block-47-quote">
                         <p>“Working with Yoftahe Araya has been an absolute game-changer for our business. Their attention to detail, professionalism, and commitment to results exceeded our expectations. We saw noticeable improvements within weeks, and their team made the entire process smooth and enjoyable. Highly recommend!</p>
@@ -309,7 +222,7 @@
 
                 <div class="block-47 d-flex mb-5">
                     <div class="block-47-image">
-                        <img src="images/person_2.jpg" alt="Image placeholder" class="img-fluid">
+                        <img src="{{asset('frontend/images/person_2.jpg')}}" alt="Image placeholder" class="img-fluid">
                     </div>
                     <blockquote class="block-47-quote">
                         <p>“I couldn’t be happier with the service from Yoftahe Araya. They truly understood our goals and went above and beyond to deliver exactly what we needed. The communication was clear, the work was top-quality, and the results speak for themselves.”</p>
@@ -318,34 +231,6 @@
                 </div>
 
             </div>
-
-            <!--				<div class="col-md-6">-->
-
-            <!--					<div class="block-47 d-flex mb-5">-->
-            <!--						<div class="block-47-image">-->
-            <!--							<img src="images/person_3.jpg" alt="Image placeholder" class="img-fluid">-->
-            <!--						</div>-->
-            <!--						<blockquote class="block-47-quote">-->
-            <!--							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>-->
-            <!--							<cite class="block-47-quote-author">&mdash; Ethan McCown, CEO <a href="#">XYZ Inc.</a></cite>-->
-            <!--						</blockquote>-->
-            <!--					</div>-->
-
-            <!--				</div>-->
-            <!--				<div class="col-md-6">-->
-
-            <!--					<div class="block-47 d-flex mb-5">-->
-            <!--						<div class="block-47-image">-->
-            <!--							<img src="images/person_4.jpg" alt="Image placeholder" class="img-fluid">-->
-            <!--						</div>-->
-            <!--						<blockquote class="block-47-quote">-->
-            <!--							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>-->
-            <!--							<cite class="block-47-quote-author">&mdash; Craig Gowen, CEO <a href="#">XYZ Inc.</a></cite>-->
-            <!--						</blockquote>-->
-            <!--					</div>-->
-
-            <!--				</div>-->
-
         </div>
     </div>
 </section>
@@ -417,7 +302,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="blog-entry">
-                    <a href="#"><img src="images/post_1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="#"><img src="{{asset('frontend/images/post_1.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
                     <div class="blog-entry-text">
                         <h3><a href="#">Creative Product Designer From Facebook</a></h3>
                         <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
@@ -432,7 +317,7 @@
 
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="blog-entry">
-                    <a href="#"><img src="images/post_2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="#"><img src="{{asset('frontend/images/post_2.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
                     <div class="blog-entry-text">
                         <h3><a href="#">Creative Product Designer From Facebook</a></h3>
                         <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
@@ -447,7 +332,7 @@
 
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="blog-entry">
-                    <a href="#"><img src="images/post_3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <a href="#"><img src="{{asset('frontend/images/post_3.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
                     <div class="blog-entry-text">
                         <h3><a href="#">Creative Product Designer From Facebook</a></h3>
                         <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
@@ -525,16 +410,15 @@
 
         <div class="row mb-5">
             <p class="col-12 text-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy; <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true" ></i> by <a href="https://colorlib.com/" target="_blank" class="text-primary">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy; <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+
             </p>
         </div>
 
         <div class="row mb-5">
             <div class="col-md-12 text-center">
                 <p>
-                    <a href="#" class="social-item"><span class="icon-facebook2"></span></a>
+                    <a href="#" class="social-item"><span class="icon-facebook"></span></a>
                     <a href="#" class="social-item"><span class="icon-twitter"></span></a>
                     <a href="#" class="social-item"><span class="icon-instagram2"></span></a>
                     <a href="#" class="social-item"><span class="icon-linkedin2"></span></a>
@@ -549,36 +433,23 @@
 
 
 
-<script src="js/vendor/jquery.min.js"></script>
-<script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/vendor/popper.min.js"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
+<script src="{{ asset('frontend/js/vendor/jquery.min.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/jquery-migrate-3.0.1.min.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/popper.min.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/bootstrap.min.js') }}"></script>
 
-<script src="js/vendor/jquery.easing.1.3.js"></script>
+<script src="{{ asset('frontend/js/vendor/jquery.easing.1.3.js') }}"></script>
 
-<script src="js/vendor/jquery.stellar.min.js"></script>
-<script src="js/vendor/jquery.waypoints.min.js"></script>
+<script src="{{ asset('frontend/js/vendor/jquery.stellar.min.js') }}"></script>
+<script src="{{ asset('frontend/js/vendor/jquery.waypoints.min.js') }}"></script>
 
-<script src="../../../unpkg.com/isotope-layout%403.0.6/dist/isotope.pkgd.min.js"></script>
-<script src="../../../unpkg.com/imagesloaded%404.1.4/imagesloaded.pkgd.min.js"></script>
-<script src="js/custom.js"></script>
+{{-- External CDN files --}}
+<script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
 
-<!-- Google Map -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script> -->
+<script src="{{ asset('frontend/js/custom.js') }}"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!--    	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>-->
-<!--    	<script>-->
-<!--    		window.dataLayer = window.dataLayer || [];-->
-<!--    		function gtag(){dataLayer.push(arguments);}-->
-<!--    		gtag('js', new Date());-->
 
-<!--    		gtag('config', 'UA-23581568-13');-->
-<!--    	</script>-->
-
-<!--    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"cd0b4b3a733644fc843ef0b185f98241","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>-->
 </body>
 
-<!-- Mirrored from preview.colorlib.com/theme/rezume/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 09 Nov 2025 14:37:13 GMT -->
 </html>
