@@ -161,7 +161,7 @@
                     <!--begin::User Image-->
                     <li class="user-header text-bg-primary">
                         <img
-                            src="assets/img/user2-160x160.jpg"
+                            src="{{asset('backend/assets/img/user2-160x160.jpg')}}"
                             class="rounded-circle shadow"
                             alt="User Image"
                         />
