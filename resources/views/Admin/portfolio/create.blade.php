@@ -1,5 +1,6 @@
 @extends('layouts.adminLayout')
 @section('main')
+    <h6>Create</h6>
     <!--begin::Quick Example-->
     <div class="card card-primary card-outline mb-4">
         <!--begin::Header-->
