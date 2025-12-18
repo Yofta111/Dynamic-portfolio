@@ -33,38 +33,32 @@
             >
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon bi bi-speedometer"></i>
+                        <i class="bi bi-person-lines-fill"></i>
                         <p>
-                            Dashboard
+                            Portfolio
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="{{route('portfolios.index')}}" class="nav-link active">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Dashboard v1</p>
+                                <p>All portfolio</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{route('portfolios.create')}}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Dashboard v2</p>
+                                <p>Create portfolio</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Dashboard v3</p>
+                                <p>Edit portfolio</p>
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="./generate/theme.html" class="nav-link">
-                        <i class="nav-icon bi bi-palette"></i>
-                        <p>Theme Generate</p>
-                    </a>
                 </li>
             </ul>
             <!--end::Sidebar Menu-->
