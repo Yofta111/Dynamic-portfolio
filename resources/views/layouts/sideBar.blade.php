@@ -52,12 +52,6 @@
                                 <p>Create portfolio</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Edit portfolio</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
             </ul>
