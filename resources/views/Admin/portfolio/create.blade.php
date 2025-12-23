@@ -14,7 +14,7 @@
                         <!--begin::Header-->
                         <div class="card-header">
                             <div class="card-title">Create Portfolio</div>
-                        </div>
+                        </div   >
                         <!--end::Header-->
 
                         <!--begin::Form-->

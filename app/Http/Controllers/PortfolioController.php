@@ -33,7 +33,6 @@ class PortfolioController extends Controller
             $request->image->move(public_path('uploads/portfolios'), $imageName);
             $data['image'] = 'uploads/portfolios/'.$imageName;
         }
-
         Portfolio::create($data);
 
         return redirect()->route('portfolios.index')
