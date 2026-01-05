@@ -39,8 +39,8 @@ class AboutController extends Controller
     }
     public function edit($id)
     {
-        $abouts = About::findOrFail($id);
-        return view('admin.about.edit', compact('abouts'));
+        $about = About::findOrFail($id);
+        return view('admin.about.edit', compact('about'));
     }
     public function update(Request $request, $id)
     {

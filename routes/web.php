@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ClientTestimonialController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyServicesController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
@@ -18,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //main page
-Route::get('/', function () {return view('welcome');});
+//Route::get('/', function () {return view('welcome');});
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'Home')->name('Homepage');                // List all portfolios
+  });
 Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
 //Admin profile
 Route::middleware('auth')->group(function () {

@@ -5,10 +5,12 @@
     <!--end::To the end-->
     <!--begin::Copyright-->
     <strong>
-        Copyright &copy; 2014-2025&nbsp;
-        <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+        <span id="current-year"></span> Designed by <a href="https://happycreatives.net/" target="_blank" rel="noopener noreferrer">Happy Creatives</a> All rights reserved.</p>
     </strong>
-    All rights reserved.
+
     <!--end::Copyright-->
 </footer>
 <!--end::Footer-->
+<script>
+    document.getElementById("current-year").innerHTML = new Date().getFullYear();
+</script>

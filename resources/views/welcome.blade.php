@@ -68,58 +68,33 @@
         </div>
         <div class="filters-content">
             <div class="row grid">
-                <div class="single-portfolio col-sm-4 all mockup">
-                    <div class="relative">
-                        <div class="thumb">
-                            <div class="overlay overlay-bg"></div>
-                            <img class="image img-fluid" src={{asset('frontend/images/Video_editing.jpg')}} alt="Video_editing_image">
-                        </div>
-                        <a href="images/p1.jpg" class="img-pop-up">
-                            <div class="middle">
-                                <div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>
+                @foreach ($portfolios as $portfolio)
+                    <div class="single-portfolio col-sm-4 all mockup">
+                        <div class="relative">
+                            <div class="thumb">
+                                <div class="overlay overlay-bg"></div>
+                                <img class="image img-fluid"
+                                     src="{{ asset($portfolio->image) }}"
+                                     alt="Video_editing_image">
                             </div>
-                        </a>
-                    </div>
-                    <div class="p-inner">
-                        <h4>Video editing </h4>
-                        <div class="cat">Junior</div>
-                    </div>
-                </div>
-                <div class="single-portfolio col-sm-4 all mockup">
-                    <div class="relative">
-                        <div class="thumb">
-                            <div class="overlay overlay-bg"></div>
-                            <img class="image img-fluid" src="{{asset('frontend/images/Graphics%20design.jpg')}}" alt="">
-                        </div>
-                        <a href="images/p2.jpg" class="img-pop-up">
-                            <div class="middle">
-                                <div class="text align-self-center d-flex"><img src="{{asset('frontend/images/preview.html')}}" alt=""></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="p-inner">
-                        <h4>Graphics Design</h4>
-                        <div class="cat">Junior</div>
-                    </div>
-                </div>
-                <div class="single-portfolio col-sm-4 all packaging">
-                    <div class="relative">
-                        <div class="thumb">
-                            <div class="overlay overlay-bg"></div>
-                            <img class="image img-fluid" src="{{asset('frontend/images/web.jpg')}}" alt="">
-                        </div>
-                        <a href="images/p3.jpg" class="img-pop-up">
-                            <div class="middle">
-                                <div class="text align-self-center d-flex"><img src="images/preview.html" alt=""></div>
-                            </div>
-                        </a>
 
+                            <a href="{{ asset($portfolio->image) }}" class="img-pop-up">
+                                <div class="middle">
+                                    <div class="text align-self-center d-flex">
+                                        <img src="{{ asset('images/preview.html') }}" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="p-inner">
+                            <h4>{{ $portfolio->description }}</h4>
+                            <div class="cat">{{$portfolio->title}}</div>
+                        </div>
                     </div>
-                    <div class="p-inner">
-                        <h4>Website Development</h4>
-                        <div class="cat">Student</div>
-                    </div>
-                </div>
+
+    @endforeach
+
 </section>
 <section class="site-section " id="section-resume">
     <div class="container">

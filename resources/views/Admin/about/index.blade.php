@@ -36,12 +36,12 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>
-                                            {{ Str::limit($abouts->description, 50) }}
+                                            {{ Str::limit($about->description, 50) }}
                                         </td>
 
                                         <td>
-                                            @if($abouts->image)
-                                                <img src="{{ asset($abouts->image) }}"
+                                            @if($about->image)
+                                                <img src="{{ asset($about->image) }}"
                                                      alt="About Image"
                                                      style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px;">
                                             @else
@@ -50,13 +50,13 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('about.edit', $abouts->id) }}"
+                                            <a href="{{ route('about.edit', $about->id) }}"
                                                class="btn btn-info btn-sm"
                                                title="Edit">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
 
-                                            <a href="{{ route('about.delete', $abouts->id) }}"
+                                            <a href="{{ route('about.delete', $about->id) }}"
                                                class="btn btn-danger btn-sm"
                                                title="Delete"
                                                onclick="return confirm('Are you sure you want to delete this abouts?')">
