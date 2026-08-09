@@ -35,6 +35,31 @@
                     <a href="#" class="nav-link active">
                         <i class="bi bi-person-lines-fill"></i>
                         <p>
+                            Hero
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('heroes.index')}}" class="nav-link active">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Hero</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('heroes.create')}}" class="nav-link">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create Hero</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                            </a>
+                        </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="bi bi-person-lines-fill"></i>
+                        <p>
                             Portfolio
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
@@ -54,8 +79,8 @@
                         </li>
                     </ul>
 
-                            </a>
-                        </li>
+                    </a>
+                </li>
                     </ul>
                 </li>
             </ul>

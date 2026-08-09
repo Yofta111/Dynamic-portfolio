@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ClientTestimonialController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyServicesController;
 use App\Http\Controllers\PortfolioController;
@@ -29,7 +30,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/heroes', [HeroController::class, 'index'])->name('heroes.index');
+        Route::get('/heroes/create', [HeroController::class, 'create'])->name('heroes.create');
+        Route::post('/heroes/store', [HeroController::class, 'store'])->name('heroes.store');
+        Route::get('/heroes/edit/{id}', [HeroController::class, 'edit'])->name('heroes.edit');
+        Route::post('/heroes/update/{id}', [HeroController::class, 'update'])->name('heroes.update');
+        Route::get('/heroes/delete/{id}', [HeroController::class, 'delete'])->name('heroes.delete');
+    });
+
 });
+
 // all portfolio
 Route::controller(PortfolioController::class)->group(function () {
     Route::get('/portfolios', 'index')->name('portfolios.index');                // List all portfolios

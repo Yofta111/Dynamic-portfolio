@@ -42,8 +42,8 @@
                                     <input
                                         type="text"
                                         name="footer"
-                                        class="form-control @error('title') is-invalid @enderror"
-                                        value="{{ old('footer', $client->title) }}"
+                                        class="form-control @error('footer') is-invalid @enderror"
+                                        value="{{ old('footer', $client->footer) }}"
                                     >
                                     @error('title')
                                     <div class="invalid-feedback">{{ $message }}</div>

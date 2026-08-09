@@ -1,424 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+=================================================================
+  PORTFOLIO — MARKUP
+  ---------------------------------------------------------------
+  Author:  Yoftahe
+  Purpose: Structure for the single-page portfolio (Header, Hero,
+           About, Skills, Services, Work, Education, Contact,
+           Footer). Presentation lives in style.css, behavior
+           (theme switch, EN/AM translation, work grid, scrubber)
+           lives in script.js.
+  Note:    Text nodes tagged data-i18n are populated/overwritten
+           by script.js on load — edit copy in script.js's i18n
+           dictionary, not here, so both languages stay in sync.
+=================================================================
+-->
+
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
-
-
-    <title>Yoftahe's rezume</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/flexslider.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/fonts/icomoon/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoftahe — Video Editor &amp; Motion Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 </head>
-<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+<body>
 
 
-
-<nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
-
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample09">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#section-home">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-resume">My Education</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-contact">Contact</a></li>
-            </ul>
+<!-- ============================ HEADER / NAV ============================ -->
+<header>
+    <div class="nav">
+        <div class="logo"><span class="dot"></span> YOFTAHE</div>
+        <nav class="nav-links">
+            <a href="#about" data-i18n="nav.about">About</a>
+            <a href="#skills" data-i18n="nav.skills">Skills</a>
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#work" data-i18n="nav.work">Work</a>
+            <a href="#education" data-i18n="nav.education">Education</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <div class="nav-controls">
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+                <button id="lang-am" onclick="setLang('am')">አማ</button>
+            </div>
+            <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></svg>
+            </button>
         </div>
     </div>
-</nav>
+</header>
 
 
-
-
-<section class="site-hero" style="background-image: url({{asset('frontend/images/Yoftahe.webp')}});" id="section-home" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="row intro-text align-items-center justify-content-center">
-            <div class="col-md-10 text-center pt-5">
-
-                <h1 class="site-heading site-animate">Hello, I'm <strong class="d-block">Yoftahe Araya</strong></h1>
-                <strong class="d-block text-white text-uppercase letter-spacing">and this is My Rezume</strong>
-
-            </div>
-        </div>
-    </div>
-</section> <!-- section -->
-
-
-
-
-
-
-<section class="site-section" id="section-portfolio">
-    <div class="container">
-        <div class="row">
-            <div class="section-heading text-center col-md-12">
-                <h2>Featured <strong>Portfolio</strong></h2>
-            </div>
-        </div>
-        <div class="filters-content">
-            <div class="row grid">
-                @foreach ($portfolios as $portfolio)
-                    <div class="single-portfolio col-sm-4 all mockup">
-                        <div class="relative">
-                            <div class="thumb">
-                                <div class="overlay overlay-bg"></div>
-                                <img class="image img-fluid"
-                                     src="{{ asset($portfolio->image) }}"
-                                     alt="Video_editing_image">
-                            </div>
-
-                            <a href="{{ asset($portfolio->image) }}" class="img-pop-up">
-                                <div class="middle">
-                                    <div class="text align-self-center d-flex">
-                                        <img src="{{ asset('images/preview.html') }}" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="p-inner">
-                            <h4>{{ $portfolio->description }}</h4>
-                            <div class="cat">{{$portfolio->title}}</div>
-                        </div>
+<!-- ================================ MAIN =================================== -->
+<main>
+    <!-- HERO -->
+    <!-- ------------------------------ HERO ------------------------------ -->
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow" data-i18n="hero.eyebrow">Video Editor &amp; Motion Designer</div>
+                    <h1 class="hero-title display">
+                        <span data-i18n="hero.title1">{{ $hero->title }}</span><br>
+                        <span class="accent-text" data-i18n="hero.title2">{{ $hero->title2 ?? 'into motion.' }}</span>
+                    </h1>
+                    <p class="hero-role" data-i18n="hero.role">
+                        {{ $hero->description ?? 'Yoftahe — video editor and motion designer...' }}
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#work" class="btn btn-primary" data-i18n="hero.cta1">▶ View Work</a>
+                        <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Start a Project</a>
                     </div>
-
-    @endforeach
-
-</section>
-<section class="site-section " id="section-resume">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-5">
-                <div class="section-heading text-center">
-                    <h2>My <strong>Education</strong></h2>
+                </div>
+                <div class="hero-frame">
+                    <div class="rec"><span class="rec-dot"></span> <span data-i18n="hero.rec">REC</span></div>
+                    <div class="img-holder">
+                        @if(isset($hero) && $hero->image)
+                            <img src="{{ asset($hero->image) }}" alt="Hero Image" style="width:100%; height:100%; object-fit:cover;">
+                        @else
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-5 5-3-3-5 5"/></svg>
+                            <span class="mono" style="font-size:11px;" data-i18n="hero.holder">Photo placeholder — 3:4</span>
+                        @endif
+                    </div>
+                    <div class="code mono">01:24:07:12</div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h2 class="mb-5"></h2>
-                <div class="resume-item mb-4">
-                    <span class="date"><span class="icon-calendar"></span> September 2018 - August 2020</span>
-                    <h3>Elementary School Education</h3>
-                    <p>Foundational years at Saint Joseph School, where curiosity was nurtured through structured learning and early academic milestones, setting the stage for future educational growth.
-                        This period instilled love for discovery that continues to shape my approach to learning.</p>
-                    <span class="school">Saint Joseph School</span>
+
+            <div class="scrubber">
+                <div class="scrubber-top">
+                    <span data-i18n="hero.reel">REEL_2026.PROJECT</span>
+                    <span id="clock">00:00:00:00</span>
                 </div>
-
-                <div class="resume-item mb-4">
-                    <span class="date"><span class="icon-calendar"></span> October 2024 - July 2024.</span>
-                    <h3>Freshman Year</h3>
-                    <p>The beginning of university life at Addis Ababa University, adapting to collegiate expectations, and building a foundation in one’s chosen field of study.
-                        I embraced new challenges and began to see myself as part of a larger academic and professional community.</p>
-                    <span class="school">Addis Ababa University</span>
+                <div class="scrubber-track" id="scrub-track">
+                    <div class="scrubber-line"></div>
+                    <div class="scrubber-fill" id="scrub-fill"></div>
+                    <div class="playhead" id="playhead"></div>
                 </div>
-            </div>
-            <div class="col-md-6">
-
-
-                <h2 class="mb-5"></h2>
-
-                <div class="resume-item mb-4">
-                    <span class="date"><span class="icon-calendar"></span> September 2020 - July 2024</span>
-                    <h3>High School</h3>
-                    <p>our transformative years at Saint Joseph School, marked by intellectual expansion, personal development, and preparation for higher education through rigorous coursework and extracurricular engagement.</p>
-                    <span class="school">Saint Joseph School</span>
-                </div>
-
-                <div class="resume-item mb-4">
-                    <span class="date"><span class="icon-calendar"></span> October 2025 - Present</span>
-                    <h3>Software Engineering</h3>
-                    <p>Currently pursuing a degree in Software Engineering at HiLCoE School of Computer Science & Technology, diving into programming fundamentals, algorithms, and real-world tech applications with a focus on innovation and problem-solving.</p>
-                    <span class="school">HiLCoE School of Computer Science & Technology</span>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="site-section" id="section-about">
-    <div class="container">
-        <div class="row mb-5 align-items-center">
-            <div class="col-lg-7 pr-lg-5 mb-5 mb-lg-0">
-                <img src="{{asset('frontend/images/face.jpg')}}" alt="Image placeholder" class="img-fluid">
-            </div>
-            <div class="col-lg-5 pl-lg-5">
-                <div class="section-heading">
-                    <h2>About <strong>Me</strong></h2>
-                </div>
-                <p class="mb-5  ">  I am a creative and versatile designer specializing in graphic design, web development, and video production. With a passion for crafting visually compelling and user-friendly experiences, I bring ideas to life across multiple digital platforms. Whether it’s designing eye-catching graphics, building responsive websites, or producing engaging video content, I combine creativity
-                    with technical expertise to deliver high-quality, impactful results. I thrive on turning concepts into visually stunning realities that resonate with audiences and elevate brands.</p>
-
-                <p>
-                    <a href="#section-contact" class="btn btn-primary px-4 py-2 btn-sm smoothscroll">Hire Me</a>
-                    <a href="#" class="btn btn-secondary px-4 py-2 btn-sm">Download CV</a>
-                </p>
-            </div>
-        </div>
-
-
-    </div>
-</section>
-
-<section class="site-section">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <div class="section-heading text-center">
-                    <h2>Client <strong>Testimonial</strong></h2>
+                <div class="chapters">
+                    <button data-target="about" onclick="jumpTo(this,'about')" data-i18n="chapters.about">01 · About</button>
+                    <button data-target="skills" onclick="jumpTo(this,'skills')" data-i18n="chapters.skills">02 · Skills</button>
+                    <button data-target="services" onclick="jumpTo(this,'services')" data-i18n="chapters.services">03 · Services</button>
+                    <button data-target="work" onclick="jumpTo(this,'work')" data-i18n="chapters.work">04 · Work</button>
+                    <button data-target="education" onclick="jumpTo(this,'education')" data-i18n="chapters.education">05 · Education</button>
+                    <button data-target="contact" onclick="jumpTo(this,'contact')" data-i18n="chapters.contact">06 · Contact</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+    </section>
 
-                <div class="block-47 d-flex mb-5">
-                    <div class="block-47-image">
-                        <img src="{{asset('frontend/images/person_2.jpg')}}" alt="Image placeholder" class="img-fluid">
-                    </div>
-                    <blockquote class="block-47-quote">
-                        <p>“Working with Yoftahe Araya has been an absolute game-changer for our business. Their attention to detail, professionalism, and commitment to results exceeded our expectations. We saw noticeable improvements within weeks, and their team made the entire process smooth and enjoyable. Highly recommend!</p>
-                        <cite class="block-47-quote-author">&mdash; Abel Tewelde, CEO <a href="#">XYZ Inc.</a></cite>
-                    </blockquote>
+    <!-- ABOUT -->
+    <!-- ------------------------------ ABOUT ------------------------------ -->
+    <section id="about">
+        <div class="sprocket-rail left"></div>
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="about.eyebrow">01 · About</div>
+                    <h2 class="section-title display" data-i18n="about.title">Two crafts, one instinct for pacing.</h2>
                 </div>
-
+                <p class="section-note" data-i18n="about.note">Rhythm, timing and structure — the same instincts, applied to timelines and to code.</p>
             </div>
-            <div class="col-md-6">
-
-                <div class="block-47 d-flex mb-5">
-                    <div class="block-47-image">
-                        <img src="{{asset('frontend/images/person_2.jpg')}}" alt="Image placeholder" class="img-fluid">
+            <div class="about-grid">
+                <div class="waveform" id="waveform"></div>
+                <div class="about-copy">
+                    <p data-i18n="about.p1"><strong>Yoftahe</strong> is a video editor and motion designer who tells stories through cuts, timing and motion — and is now three years into a Software Engineering degree at Hilcoe, extending that same craft into building for the web.</p>
+                    <p data-i18n="about.p2">The path started at <strong>Saint Joseph School</strong>, continued through freshman year in Addis Ababa's <strong>5 Kilo</strong> campus, and is currently in its <strong>3rd year at Hilcoe</strong> — where editing timelines and code editors have started to feel like the same tool.</p>
+                    <p data-i18n="about.p3">Off the timeline, that means building this very site: a frontend designed and cut together like a reel, with a Laravel backend in progress behind it.</p>
+                    <div class="stat-row">
+                        <div class="stat"><b data-i18n="about.stat1n">3rd</b><span data-i18n="about.stat1s">Year · Software Eng.</span></div>
+                        <div class="stat"><b data-i18n="about.stat2n">2</b><span data-i18n="about.stat2s">Crafts · Video + Web</span></div>
+                        <div class="stat"><b data-i18n="about.stat3n">EN/AM</b><span data-i18n="about.stat3s">Bilingual Site</span></div>
                     </div>
-                    <blockquote class="block-47-quote">
-                        <p>“I couldn’t be happier with the service from Yoftahe Araya. They truly understood our goals and went above and beyond to deliver exactly what we needed. The communication was clear, the work was top-quality, and the results speak for themselves.”</p>
-                        <cite class="block-47-quote-author">&mdash; Zelalem Abebe, CEO <a href="#">XYZ Inc.</a></cite>
-                    </blockquote>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="site-section pb-0"  id="section-services">
-    <div class="container">
-
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="section-heading text-center">
-                    <h2>My <strong>Services</strong></h2>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="sprocket-rail right"></div>
+    </section>
 
-            <div class="col-md-6 col-lg-4 text-center mb-5">
-                <div class="site-service-item site-animate" data-animate-effect="fadeIn">
-						<span class="icon">
-							<span class="icon-browser2"></span>
-						</span>
-                    <h3 class="mb-4">Fullstack Website Development</h3>
-                    <p>Design-focused web developer with strong visual sensibility and proficiency in translating UI/UX concepts into clean, responsive websites. Combines front-end skills with a designer’s eye for layout, typography, and brand consistency.</p>
-                    <p><a href="#" class="site-link">Learn More <i class="icon-chevron-right"></i></a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 text-center mb-5">
-                <div class="site-service-item site-animate" data-animate-effect="fadeIn">
-						<span class="icon">
-							<span class="icon-presentation"></span>
-						</span>
-                    <h3 class="mb-4">Graphics Design</h3>
-                    <p>Creative Graphic Designer skilled in visual branding, and digital content. Uses in Adobe Illustrator and Adobe Photoshop. Translates client ideas into polished, on-brand designs for print and digital—focused on clarity, impact, and consistency.</p>
-                    <p><a href="#" class="site-link">Learn More <i class="icon-chevron-right"></i></a></p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 text-center mb-5">
-                <div class="site-service-item site-animate" data-animate-effect="fadeIn">
-						<span class="icon">
-							<span class="icon-video2"></span>
-						</span>
-                    <h3 class="mb-4">Video Editing</h3>
-                    <p>I've worked on content for platforms like TikTok and looking to work on YouTube, and I enjoy creating
-                        clean, engaging edits that match the message and audience. I'm eager to learn more and grow as part of your team.</p>
-                    <p><a href="#" class="site-link">Learn More <i class="icon-chevron-right"></i></a></p>
+    <!-- SKILLS -->
+    <!-- ------------------------------ SKILLS ------------------------------ -->
+    <section id="skills" style="background:var(--surface);">
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="skills.eyebrow">02 · Skills</div>
+                    <h2 class="section-title display" data-i18n="skills.title">Two tracks, synced.</h2>
                 </div>
             </div>
 
-
-
-        </div>
-    </div>
-</section>
-
-
-
-
-<section class="site-section" id="section-blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-5">
-                <div class="section-heading text-center">
-                    <h2>Blog on <strong>Medium</strong></h2>
+            <div class="track">
+                <div class="track-head"><span class="tag" style="background:var(--accent);"></span><span data-i18n="skills.track1">Track A — Video &amp; Motion</span></div>
+                <div class="track-body">
+                    <div class="clip v">Adobe Premiere Pro</div>
+                    <div class="clip v">After Effects</div>
+                    <div class="clip v">DaVinci Resolve</div>
+                    <div class="clip v">Motion Graphics</div>
+                    <div class="clip v">Color Grading</div>
+                    <div class="clip v">Sound Design</div>
+                    <div class="clip v">Storyboarding</div>
+                </div>
+            </div>
+            <div class="track">
+                <div class="track-head"><span class="tag" style="background:var(--accent-2);"></span><span data-i18n="skills.track2">Track B — Web &amp; Software</span></div>
+                <div class="track-body">
+                    <div class="clip d">HTML / CSS / JS</div>
+                    <div class="clip d">Bootstrap</div>
+                    <div class="clip d">Laravel</div>
+                    <div class="clip d">PHP</div>
+                    <div class="clip d">Java / OOP</div>
+                    <div class="clip d">Git</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="row">
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="blog-entry">
-                    <a href="#"><img src="{{asset('frontend/images/post_1.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="blog-entry-text">
-                        <h3><a href="#">Creative Product Designer From Facebook</a></h3>
-                        <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-
-                        <div class="meta">
-                            <a href="#"><span class="icon-calendar"></span> Aug 7, 2018</a>
-                            <a href="#"><span class="icon-bubble"></span> 5 Comments</a>
-                        </div>
-                    </div>
+    <!-- SERVICES -->
+    <!-- ----------------------------- SERVICES ----------------------------- -->
+    <section id="services">
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="services.eyebrow">03 · Services</div>
+                    <h2 class="section-title display" data-i18n="services.title">What I take on.</h2>
                 </div>
             </div>
-
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="blog-entry">
-                    <a href="#"><img src="{{asset('frontend/images/post_2.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="blog-entry-text">
-                        <h3><a href="#">Creative Product Designer From Facebook</a></h3>
-                        <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-
-                        <div class="meta">
-                            <a href="#"><span class="icon-calendar"></span> Aug 7, 2018</a>
-                            <a href="#"><span class="icon-bubble"></span> 5 Comments</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="blog-entry">
-                    <a href="#"><img src="{{asset('frontend/images/post_3.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
-                    <div class="blog-entry-text">
-                        <h3><a href="#">Creative Product Designer From Facebook</a></h3>
-                        <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-
-                        <div class="meta">
-                            <a href="#"><span class="icon-calendar"></span> Aug 7, 2018</a>
-                            <a href="#"><span class="icon-bubble"></span> 5 Comments</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
-
-<section class="site-section" id="section-contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-5">
-                <div class="section-heading text-center">
-                    <h2>Get <strong>In Touch</strong></h2>
+        <div class="wrap" style="padding:0;">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-num">01</div>
+                    <h3 data-i18n="services.s1t">Video Editing</h3>
+                    <p data-i18n="services.s1p">Narrative and commercial edits — pacing, sound and color pulled into one coherent cut.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">02</div>
+                    <h3 data-i18n="services.s2t">Motion Design</h3>
+                    <p data-i18n="services.s2p">Titles, lower-thirds and animated graphics that carry a brand's motion language.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-num">03</div>
+                    <h3 data-i18n="services.s3t">Web Development</h3>
+                    <p data-i18n="services.s3p">Frontend builds and Laravel-backed sites — portfolios, landing pages, small platforms.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="col-md-7 mb-5 mb-md-0">
-                <form action="#" class="site-form">
-                    <h3 class="mb-5">Get In Touch</h3>
-                    <div class="form-group">
-                        <input type="text" class="form-control px-3 py-4" placeholder="Your Name">
+    <!-- WORK -->
+    <!-- ------------------------------- WORK ------------------------------- -->
+    <section id="work" style="background:var(--surface);">
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="work.eyebrow">04 · Selected Work</div>
+                    <h2 class="section-title display" data-i18n="work.title">A reel of recent cuts.</h2>
+                </div>
+                <p class="section-note" data-i18n="work.note">Placeholders — swap in your own thumbnails and links.</p>
+            </div>
+
+            <div class="filter-row">
+                <button class="active" onclick="filterWork(this,'all')" data-i18n="work.f.all">All</button>
+                <button onclick="filterWork(this,'video')" data-i18n="work.f.video">Video</button>
+                <button onclick="filterWork(this,'motion')" data-i18n="work.f.motion">Motion</button>
+                <button onclick="filterWork(this,'web')" data-i18n="work.f.web">Web</button>
+            </div>
+
+            <div class="work-grid" id="work-grid">
+                <!-- items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <!-- ----------------------------- EDUCATION ---------------------------- -->
+    <section id="education">
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="edu.eyebrow">05 · Education</div>
+                    <h2 class="section-title display" data-i18n="edu.title">Timecoded path.</h2>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-code mono">00:00:00:00</div>
+                    <h4 data-i18n="edu.i1t">Saint Joseph School</h4>
+                    <p data-i18n="edu.i1p">High school education.</p>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-code mono">00:01:00:00</div>
+                    <h4 data-i18n="edu.i2t">Freshman Year — Addis Ababa, 5 Kilo</h4>
+                    <p data-i18n="edu.i2p">Freshman college studies at the 5 Kilo campus in Addis Ababa.</p>
+                </div>
+                <div class="tl-item current">
+                    <div class="tl-code mono">00:03:00:00 ▶</div>
+                    <h4 data-i18n="edu.i3t">Hilcoe — Software Engineering, 3rd Year</h4>
+                    <p data-i18n="edu.i3p">Currently in the 3rd year of a Software Engineering program, in progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <!-- ------------------------------ CONTACT ----------------------------- -->
+    <section id="contact" style="background:var(--surface);">
+        <div class="wrap">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow" data-i18n="contact.eyebrow">06 · Contact</div>
+                    <h2 class="section-title display" data-i18n="contact.title">Let's cut something together.</h2>
+                </div>
+            </div>
+            <div class="contact-grid">
+                <form onsubmit="return false;">
+                    <div class="field">
+                        <label data-i18n="contact.name">Name</label>
+                        <input type="text" placeholder="Your name">
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control px-3 py-4" placeholder="Your Email">
+                    <div class="field">
+                        <label data-i18n="contact.email">Email</label>
+                        <input type="email" placeholder="you@email.com">
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control px-3 py-4" placeholder="Your Phone">
+                    <div class="field">
+                        <label data-i18n="contact.msg">Message</label>
+                        <textarea placeholder="Tell me about the project…"></textarea>
                     </div>
-                    <div class="form-group mb-5">
-                        <textarea class="form-control px-3 py-4"cols="30" rows="10" placeholder="Write a Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary  px-4 py-3" value="Send Message">
-                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">▶ Send Message</button>
                 </form>
-            </div>
-            <div class="col-md-5 pl-md-5">
-                <h3 class="mb-5">My Contact Details</h3>
-                <ul class="site-contact-details">
-                    <li>
-                        <span class="text-uppercase">Email</span>
-                        <a href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="601309140520070d01090c4e030f0d">yoftaraya@gmail.com</a>
-                    </li>
-                    <li>
-                        <span class="text-uppercase">Phone</span>
-                        +251 915771277
-                        <span class="text-uppercase">Address</span>
-                        Addis Ababa, ET <br>
-                        Kolfe Keranio  <br>
-                    </li>
+                <ul class="contact-list">
+                    <li><span data-i18n="contact.email.label">Email</span><a href="mailto:hello@example.com">hello@example.com</a></li>
+                    <li><span data-i18n="contact.phone.label">Phone</span><a href="tel:+251900000000">+251 90 000 0000</a></li>
+                    <li><span>Instagram</span><a href="#">@yoftahe</a></li>
+                    <li><span>LinkedIn</span><a href="#">/in/yoftahe</a></li>
+                    <li><span>Vimeo</span><a href="#">vimeo.com/yoftahe</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
 
-<footer class="site-footer">
-    <div class="container">
-
-        <div class="row mb-5">
-            <p class="col-12 text-center">
-                Copyright &copy; <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved</a>
-
-            </p>
-        </div>
-
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
-                <p>
-                    <a href="#" class="social-item"><span class="icon-facebook"></span></a>
-                    <a href="#" class="social-item"><span class="icon-twitter"></span></a>
-                    <a href="#" class="social-item"><span class="icon-instagram2"></span></a>
-                    <a href="#" class="social-item"><span class="icon-linkedin2"></span></a>
-                    <a href="#" class="social-item"><span class="icon-vimeo"></span></a>
-                </p>
-            </div>
-        </div>
-
+<!-- =============================== FOOTER =================================== -->
+<footer>
+    <div class="wrap footer-row">
+        <span>© 2026 YOFTAHE — <span data-i18n="footer.rights">ALL FRAMES RESERVED</span></span>
+        <span data-i18n="footer.made">DESIGNED &amp; CUT BY YOFTAHE</span>
     </div>
 </footer>
 
-
-
-
-<script src="{{ asset('frontend/js/vendor/jquery.min.js') }}"></script>
-<script src="{{ asset('frontend/js/vendor/jquery-migrate-3.0.1.min.js') }}"></script>
-<script src="{{ asset('frontend/js/vendor/popper.min.js') }}"></script>
-<script src="{{ asset('frontend/js/vendor/bootstrap.min.js') }}"></script>
-
-<script src="{{ asset('frontend/js/vendor/jquery.easing.1.3.js') }}"></script>
-
-<script src="{{ asset('frontend/js/vendor/jquery.stellar.min.js') }}"></script>
-<script src="{{ asset('frontend/js/vendor/jquery.waypoints.min.js') }}"></script>
-
-{{-- External CDN files --}}
-<script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
-
-<script src="{{ asset('frontend/js/custom.js') }}"></script>
-
-
+<script src="{{ asset('frontend/js/script.js') }}"></script>
 </body>
-
 </html>

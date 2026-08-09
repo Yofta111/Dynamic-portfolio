@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-            Schema::create('client_testimonials', function (Blueprint $table) {
-                $table->id();
-                $table->text('description')->nullable();
-                $table->string('footer')->nullable();
-                $table->timestamps();
-            });
+        Schema::create('heroes', function (Blueprint $table) {
+            $table->id();
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->string('title2')->nullable();
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_testimonials');
+        Schema::dropIfExists('heroes');
     }
 };
