@@ -4,84 +4,100 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PortfolioController extends Controller
 {
-    //
-    public function index(){
-
+    public function index()
+    {
         $portfolios = Portfolio::latest()->get();
-        // return view('admin.portfolio.index',);
-        return view('admin.portfolio.index', compact('portfolios'));
+        return view('Admin.portfolio.index', compact('portfolios'));
     }
-    //
-    public function create(){
-        return view('admin.portfolio.create');
+
+    public function create()
+    {
+        return view('Admin.portfolio.create');
     }
+
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'title'       => 'nullable|string|max:255',
+            'type'        => 'nullable|string|max:255',
+            'category'    => 'nullable|string|max:255',
+            'link'        => 'nullable|string',
             'description' => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $data = $request->all();
-
+        $imagePath = null;
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/portfolios'), $imageName);
-            $data['image'] = 'uploads/portfolios/'.$imageName;
+            $imagePath = 'uploads/portfolios/' . $imageName;
         }
-        Portfolio::create($data);
 
-        return redirect()->route('portfolios.index')
-            ->with('success', 'Portfolio created successfully');
+        Portfolio::create([
+            'title'       => $request->title,
+            'type'        => $request->type,
+            'category'    => $request->category,
+            'link'        => $request->link,
+            'description' => $request->description,
+            'image'       => $imagePath,
+        ]);
+
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio created successfully.');
     }
+
     public function edit($id)
     {
         $portfolio = Portfolio::findOrFail($id);
-        return view('admin.portfolio.edit', compact('portfolio'));
+        return view('Admin.portfolio.edit', compact('portfolio'));
     }
+
     public function update(Request $request, $id)
     {
         $portfolio = Portfolio::findOrFail($id);
 
         $request->validate([
-            'title' => 'required|string|max:255',
-
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'title'       => 'nullable|string|max:255',
+            'type'        => 'nullable|string|max:255',
+            'category'    => 'nullable|string|max:255',
+            'link'        => 'nullable|string',
             'description' => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
-        $data = $request->all();
-
         if ($request->hasFile('image')) {
-            if ($portfolio->image && file_exists(public_path($portfolio->image))) {
-                unlink(public_path($portfolio->image));
+            if ($portfolio->image && File::exists(public_path($portfolio->image))) {
+                File::delete(public_path($portfolio->image));
             }
 
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/portfolios'), $imageName);
-            $data['image'] = 'uploads/portfolios/'.$imageName;
+            $portfolio->image = 'uploads/portfolios/' . $imageName;
         }
 
-        $portfolio->update($data);
+        $portfolio->title       = $request->title;
+        $portfolio->type        = $request->type;
+        $portfolio->category    = $request->category;
+        $portfolio->link        = $request->link;
+        $portfolio->description = $request->description;
+        $portfolio->save();
 
-        return redirect()->route('portfolios.index')
-            ->with('success', 'Portfolio updated successfully');
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio updated successfully.');
     }
+
     public function destroy($id)
     {
         $portfolio = Portfolio::findOrFail($id);
 
-        if ($portfolio->image && file_exists(public_path($portfolio->image))) {
-            unlink(public_path($portfolio->image));
+        if ($portfolio->image && File::exists(public_path($portfolio->image))) {
+            File::delete(public_path($portfolio->image));
         }
 
         $portfolio->delete();
 
-        return redirect()->route('portfolios.index')
-            ->with('success', 'Portfolio deleted successfully');
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio deleted successfully.');
     }
 }

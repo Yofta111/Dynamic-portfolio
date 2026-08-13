@@ -1,88 +1,126 @@
 @extends('layouts.adminLayout')
 
 @section('main')
-    <!--begin::App Content-->
-    <div class="app-content">
-        <!--begin::Container-->
-        <div class="container-fluid">
 
-            <!--begin::Row-->
-            <div class="row">
-                <div class="col-md-12">
+    <div class="container-fluid">
 
-                    <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h3 class="card-title">All about</h3>
+        {{-- Page Header --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+                     <a href="{{ route('about.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add About
+            </a>
+        </div>
 
-                            <a href="{{ route('about.create') }}" class="btn btn-primary btn-sm">
-                                <i class="bi bi-plus-circle"></i> Add Abouts
-                            </a>
-                        </div>
+        {{-- Success Message --}}
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
 
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table class="table table-bordered table-hover align-middle">
-                                <thead>
+        {{-- About Table --}}
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">About Sections</h5>
+            </div>
+
+            <div class="card-body">
+
+                @if($abouts->count() > 0)
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle">
+
+                            <thead>
+                            <tr>
+                                <th style="width: 60px;">#</th>
+                                <th>Description 1</th>
+                                <th>Description 2</th>
+                                <th style="width: 180px;">Actions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            @foreach($abouts as $key => $about)
+
                                 <tr>
-                                    <th style="width: 60px">#</th>
-                                    <th>Description</th>
-                                    <th>image</th>
-                                    <th style="width: 140px">Action</th>
-                                </tr>
-                                </thead>
 
-                                <tbody>
-                                @forelse($abouts as $key => $about)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>
-                                            {{ Str::limit($about->description, 50) }}
-                                        </td>
+                                    <td>
+                                        {{ $key + 1 }}
+                                    </td>
 
-                                        <td>
-                                            @if($about->image)
-                                                <img src="{{ asset($about->image) }}"
-                                                     alt="About Image"
-                                                     style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px;">
-                                            @else
-                                                <span class="badge bg-secondary">No Image</span>
-                                            @endif
-                                        </td>
+                                    <td>
+                                        {{ Str::limit($about->description, 100) }}
+                                    </td>
 
-                                        <td>
+                                    <td>
+                                        {{ Str::limit($about->description2, 100) }}
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex gap-2">
+
+                                            {{-- Edit --}}
                                             <a href="{{ route('about.edit', $about->id) }}"
-                                               class="btn btn-info btn-sm"
-                                               title="Edit">
-                                                <i class="bi bi-pencil-square"></i>
+                                               class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
                                             </a>
 
-                                            <a href="{{ route('about.delete', $about->id) }}"
-                                               class="btn btn-danger btn-sm"
-                                               title="Delete"
-                                               onclick="return confirm('Are you sure you want to delete this abouts?')">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center text-muted">
-                                            No about found
-                                        </td>
-                                    </tr>
-                                @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
+                                            {{-- Delete --}}
+                                            <form action="{{ route('about.delete', $about->id) }}"
+                                                  method="POST"
+                                                  onsubmit="return confirm('Are you sure you want to delete this About section?');">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            @endforeach
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                @else
+
+                    <div class="text-center py-5">
+
+                        <i class="fas fa-user fa-3x text-muted mb-3"></i>
+
+                        <h5>No About Section Found</h5>
+
+                        <p class="text-muted">
+                            You haven't created an About section yet.
+                        </p>
+
+                        <a href="{{ route('about.create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Create About Section
+                        </a>
 
                     </div>
-                </div>
-            </div>
-            <!--end::Row-->
 
+                @endif
+
+            </div>
         </div>
-        <!--end::Container-->
+
     </div>
-    <!--end::App Content-->
+
 @endsection

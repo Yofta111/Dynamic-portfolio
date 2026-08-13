@@ -42,26 +42,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/heroes/delete/{id}', [HeroController::class, 'delete'])->name('heroes.delete');
     });
 
-});
 
-// all portfolio
-Route::controller(PortfolioController::class)->group(function () {
-    Route::get('/portfolios', 'index')->name('portfolios.index');                // List all portfolios
-    Route::get('/portfolios/create', 'create')->name('portfolios.create');       // Add portfolios form
-    Route::post('/portfolios/store', 'store')->name('portfolios.store');         // Save new portfolios
-    Route::get('/portfolios/{id}/edit', 'edit')->name('portfolios.edit');        // Edit portfolios form
-    Route::post('/portfolios/{id}', 'update')->name('portfolios.update');        // Update existing portfolios
-    Route::get('/portfolios/{id}', 'destroy')->name('portfolios.delete');        // Delete portfolios
-});
+    Route::prefix('admin')->group(function () {
+        Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolios.index');
+        Route::get('/portfolios/create', [PortfolioController::class, 'create'])->name('portfolios.create');
+        Route::post('/portfolios', [PortfolioController::class, 'store'])->name('portfolios.store');
+        Route::get('/portfolios/{id}/edit', [PortfolioController::class, 'edit'])->name('portfolios.edit');
+        Route::post('/portfolios/{id}', [PortfolioController::class, 'update'])->name('portfolios.update');
+        Route::get('/portfolios/{id}/delete', [PortfolioController::class, 'destroy'])->name('portfolios.delete');
+    });
 // all about
-Route::controller(AboutController::class)->group(function () {
-    Route::get('/about', 'index')->name('about.index');                // List all about
-    Route::get('/about/create', 'create')->name('about.create');       // Add about form
-    Route::post('/about/store', 'store')->name('about.store');         // Save new about
-    Route::get('/about/{id}/edit', 'edit')->name('about.edit');        // Edit about form
-    Route::post('/about/{id}', 'update')->name('about.update');        // Update existing about
-    Route::get('/about/{id}', 'destroy')->name('about.delete');        // Delete about
-});
+    Route::prefix('admin')->group(function () {
+        Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+        Route::get('/about/create', [AboutController::class, 'create'])->name('about.create');
+        Route::post('/about/store', [AboutController::class, 'store'])->name('about.store');
+        Route::get('/about/{id}/edit', [AboutController::class, 'edit'])->name('about.edit');
+        Route::post('/about/{id}', [AboutController::class, 'update'])->name('about.update');
+        Route::get('/about/{id}/delete', [AboutController::class, 'delete'])->name('about.delete');
+    });
 // all myServices
 Route::controller(MyServicesController::class)->group(function () {
     Route::get('/myServices', 'index')->name('myServices.index');                // List all myServices
@@ -81,4 +79,6 @@ Route::controller(ClientTestimonialController::class)->group(function () {
     Route::get('/clientTestimonial/{id}', 'destroy')->name('clientTestimonial.delete');        // Delete clientTestimonial
 });
 
+
+});
 require __DIR__.'/auth.php';

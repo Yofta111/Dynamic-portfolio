@@ -7,71 +7,62 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    //
-    public function index(){
-
+    public function index()
+    {
+        // Retrieve the latest About record
         $abouts = About::latest()->get();
-        // return view('admin.about.index',);
-        return view('admin.about.index', compact('abouts'));
+
+        // Pass $about to the welcome view
+        return view('Admin.about.index', compact('abouts'  ));
     }
-    //
-    public function create(){
-        return view('admin.about.create');
+
+    public function create()
+    {
+        return view('Admin.about.create');
     }
+
     public function store(Request $request)
     {
         $request->validate([
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'description'  => 'nullable|string',
+            'description2' => 'nullable|string',
         ]);
 
-        $data = $request->all();
+        About::create([
+            'description'  => $request->description,
+            'description2' => $request->description2,
+        ]);
 
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/about'), $imageName);
-            $data['image'] = 'uploads/about/'.$imageName;
-        }
-        About::create($data);
-
-        return redirect()->route('about.index')
-            ->with('success', 'About created successfully');
+        return redirect()->route('about.index')->with('success', 'About section created successfully.');
     }
+
     public function edit($id)
     {
         $about = About::findOrFail($id);
-        return view('admin.about.edit', compact('about'));
+        return view('Admin.about.edit', compact('about'));
     }
+
     public function update(Request $request, $id)
     {
-        $abouts = About::findOrFail($id);
+        $about = About::findOrFail($id);
 
         $request->validate([
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
-            'description'=> 'nullable|string',
+            'description'  => 'nullable|string',
+            'description2' => 'nullable|string',
         ]);
 
-        $data = $request->all();
-        if ($request->hasFile('image')) {
-            if ($portfolio->image && file_exists(public_path($portfolio->image))) {
-                unlink(public_path($portfolio->image));
-            }
+        $about->description  = $request->description;
+        $about->description2 = $request->description2;
+        $about->save();
 
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/about'), $imageName);
-            $data['image'] = 'uploads/about/'.$imageName;
-        }
-        $abouts->update($data);
-
-        return redirect()->route('about.index')
-            ->with('success', 'About updated successfully');
+        return redirect()->route('about.index')->with('success', 'About section updated successfully.');
     }
-    public function destroy($id)
-    {
-        $abouts = About::findOrFail($id);
-        $abouts->delete();
 
-        return redirect()->route('about.index')
-            ->with('success', 'Abouts deleted successfully');
+    public function delete($id)
+    {
+        $about = About::findOrFail($id);
+        $about->delete();
+
+        return redirect()->route('about.index')->with('success', 'About section deleted successfully.');
     }
 }

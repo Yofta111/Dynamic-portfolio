@@ -64,7 +64,7 @@
                     <div class="eyebrow" data-i18n="hero.eyebrow">Video Editor &amp; Motion Designer</div>
                     <h1 class="hero-title display">
                         <span data-i18n="hero.title1">{{ $hero->title }}</span><br>
-                        <span class="accent-text" data-i18n="hero.title2">{{ $hero->title2 ?? 'into motion.' }}</span>
+                        <span class="accent-text" data-i18n="hero.title2">{{ $hero->title2  }}</span>
                     </h1>
                     <p class="hero-role" data-i18n="hero.role">
                         {{ $hero->description ?? 'Yoftahe — video editor and motion designer...' }}
@@ -120,18 +120,21 @@
                     <div class="eyebrow" data-i18n="about.eyebrow">01 · About</div>
                     <h2 class="section-title display" data-i18n="about.title">Two crafts, one instinct for pacing.</h2>
                 </div>
-                <p class="section-note" data-i18n="about.note">Rhythm, timing and structure — the same instincts, applied to timelines and to code.</p>
             </div>
             <div class="about-grid">
-                <div class="waveform" id="waveform"></div>
                 <div class="about-copy">
-                    <p data-i18n="about.p1"><strong>Yoftahe</strong> is a video editor and motion designer who tells stories through cuts, timing and motion — and is now three years into a Software Engineering degree at Hilcoe, extending that same craft into building for the web.</p>
-                    <p data-i18n="about.p2">The path started at <strong>Saint Joseph School</strong>, continued through freshman year in Addis Ababa's <strong>5 Kilo</strong> campus, and is currently in its <strong>3rd year at Hilcoe</strong> — where editing timelines and code editors have started to feel like the same tool.</p>
-                    <p data-i18n="about.p3">Off the timeline, that means building this very site: a frontend designed and cut together like a reel, with a Laravel backend in progress behind it.</p>
+                    <p data-i18n="about.p1">
+                        <strong>Yoftahe </strong>{{ $about->description }}
+                    </p>
+
+                    <p data-i18n="about.p2">
+                        {{ $about->description2 }}
+                    </p>
+
                     <div class="stat-row">
                         <div class="stat"><b data-i18n="about.stat1n">3rd</b><span data-i18n="about.stat1s">Year · Software Eng.</span></div>
-                        <div class="stat"><b data-i18n="about.stat2n">2</b><span data-i18n="about.stat2s">Crafts · Video + Web</span></div>
-                        <div class="stat"><b data-i18n="about.stat3n">EN/AM</b><span data-i18n="about.stat3s">Bilingual Site</span></div>
+                        <div class="stat"><b data-i18n="about.stat2n">Multi-skill</b><span data-i18n="about.stat2s">Crafts · Video + Web</span></div>
+                        <div class="stat"><b data-i18n="about.stat3n">EN/AMH</b><span data-i18n="about.stat3s">Bilingual-Speaker </span></div>
                     </div>
                 </div>
             </div>
@@ -189,46 +192,59 @@
         </div>
         <div class="wrap" style="padding:0;">
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-num">01</div>
-                    <h3 data-i18n="services.s1t">Video Editing</h3>
-                    <p data-i18n="services.s1p">Narrative and commercial edits — pacing, sound and color pulled into one coherent cut.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-num">02</div>
-                    <h3 data-i18n="services.s2t">Motion Design</h3>
-                    <p data-i18n="services.s2p">Titles, lower-thirds and animated graphics that carry a brand's motion language.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-num">03</div>
-                    <h3 data-i18n="services.s3t">Web Development</h3>
-                    <p data-i18n="services.s3p">Frontend builds and Laravel-backed sites — portfolios, landing pages, small platforms.</p>
-                </div>
+                @foreach($services as $service)
+                    <div class="service-card">
+                        {{-- Formats 1 as 01, 2 as 02, etc. --}}
+                        <div class="service-num">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
+
+                        <h3>{{ $service->title }}</h3>
+                        <p>{{ $service->description }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!-- WORK -->
     <!-- ------------------------------- WORK ------------------------------- -->
-    <section id="work" style="background:var(--surface);">
+    <section id="work">
         <div class="wrap">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow" data-i18n="work.eyebrow">04 · Selected Work</div>
-                    <h2 class="section-title display" data-i18n="work.title">A reel of recent cuts.</h2>
+                    <div class="eyebrow">04 · Selected Work</div>
+                    <h2 class="section-title display">A reel of recent cuts.</h2>
                 </div>
-                <p class="section-note" data-i18n="work.note">Placeholders — swap in your own thumbnails and links.</p>
             </div>
 
             <div class="filter-row">
-                <button class="active" onclick="filterWork(this,'all')" data-i18n="work.f.all">All</button>
-                <button onclick="filterWork(this,'video')" data-i18n="work.f.video">Video</button>
-                <button onclick="filterWork(this,'motion')" data-i18n="work.f.motion">Motion</button>
-                <button onclick="filterWork(this,'web')" data-i18n="work.f.web">Web</button>
+                <button class="active" onclick="filterWork(this,'all')">All</button>
+                <button onclick="filterWork(this,'video')">Video</button>
+                <button onclick="filterWork(this,'motion')">Motion</button>
+                <button onclick="filterWork(this,'web')">Web</button>
             </div>
 
             <div class="work-grid" id="work-grid">
-                <!-- items injected by JS -->
+                @forelse($portfolios as $portfolio)
+                    <div class="work-card" data-category="{{ Str::lower($portfolio->category ?? 'all') }}">
+                        <div class="work-thumb" style="@if($portfolio->image) background-image: url('{{ asset($portfolio->image) }}'); background-size: cover; background-position: center; @endif">
+                            <span class="work-tag">{{ $portfolio->type ?? 'Project' }}</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                                <path d="M5 3l14 9-14 9V3z"/>
+                            </svg>
+                        </div>
+                        <div class="work-meta">
+                            <h4>{{ $portfolio->title }}</h4>
+                            @if($portfolio->description)
+                                <p class="work-desc">{{ Str::limit($portfolio->description, 80) }}</p>
+                            @endif
+                            <a href="{{ $portfolio->link ?? '#' }}" @if($portfolio->link) target="_blank" @endif class="btn btn-ghost work-view">View</a>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center py-4">
+                        <p class="text-muted">No portfolio items found.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

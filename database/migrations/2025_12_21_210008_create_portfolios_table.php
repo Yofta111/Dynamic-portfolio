@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('portfolios', function (Blueprint $table) 
+        Schema::create('portfolios', function (Blueprint $table)
         {
             $table->id();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->text('type')->nullable();
+            $table->text('category')->nullable();
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }

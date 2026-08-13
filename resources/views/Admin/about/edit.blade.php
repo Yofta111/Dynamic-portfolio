@@ -1,115 +1,80 @@
 @extends('layouts.adminLayout')
+
 @section('main')
-    @extends('layouts.adminLayout')
+    <!--begin::App Content-->
+    <div class="app-content">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+                <!--begin::Col-->
+                <div class="col-md-8">
 
-    @section('main')
-        <!--begin::App Content-->
-        <div class="app-content">
-            <!--begin::Container-->
-            <div class="container-fluid">
-                <!--begin::Row-->
-                <div class="row g-4">
-                    <!--begin::Col-->
-                    <div class="col-md-8">
-
-                        <div class="card card-primary card-outline mb-4">
-                            <!--begin::Header-->
-                            <div class="card-header">
-                                <div class="card-title">Edit About</div>
-                            </div>
-                            <!--end::Header-->
-
-                            <!--begin::Form-->
-                            <form action="{{ route('about.update', $about->id) }}"
-                                  method="POST"
-                                  enctype="multipart/form-data">
-                                @csrf
-
-                                <!--begin::Body-->
-                                <div class="card-body">
-
-                                    <!-- Description -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Description</label>
-                                        <textarea
-                                            name="description"
-                                            class="form-control @error('description') is-invalid @enderror"
-                                            rows="4"
-                                        >{{ old('description', $about->description) }}</textarea>
-                                        @error('description')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Image -->
-                                    <div class="mb-3">
-                                        <label class="form-label">About Image</label>
-                                        <input
-                                            type="file"
-                                            name="image"
-                                            class="form-control @error('image') is-invalid @enderror"
-                                            onchange="previewImage(event)"
-                                        >
-                                        @error('image')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-
-                                        <!-- Current Image -->
-                                        @if($about->image)
-                                            <div class="mt-2">
-                                                <p class="mb-1 text-muted">Current Image</p>
-                                                <img
-                                                    src="{{ asset($about->image) }}"
-                                                    alt="About Image"
-                                                    style="width:120px; height:80px; object-fit:cover; border-radius:6px;"
-                                                >
-                                            </div>
-                                        @endif
-
-                                        <!-- New Preview -->
-                                        <img id="imagePreview"
-                                             src=""
-                                             style="display:none; margin-top:10px; width:120px; height:80px; object-fit:cover; border-radius:6px;">
-                                    </div>
-
-                                </div>
-                                <!--end::Body-->
-
-                                <!--begin::Footer-->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-save"></i> Update Abouts
-                                    </button>
-
-                                    <a href="{{ route('about.index') }}"
-                                       class="btn btn-secondary">
-                                        Back
-                                    </a>
-                                </div>
-                                <!--end::Footer-->
-
-                            </form>
-                            <!--end::Form-->
+                    <div class="card card-primary card-outline mb-4">
+                        <!--begin::Header-->
+                        <div class="card-header">
+                            <div class="card-title">Edit About Section</div>
                         </div>
+                        <!--end::Header-->
 
+                        <!--begin::Form-->
+                        <form action="{{ route('about.update', $about->id) }}" method="POST">
+                            @csrf
+
+                            <!--begin::Body-->
+                            <div class="card-body">
+
+                                <!-- Description 1 -->
+                                <div class="mb-3">
+                                    <label class="form-label">Description 1</label>
+                                    <textarea
+                                        name="description"
+                                        class="form-control @error('description') is-invalid @enderror"
+                                        rows="4"
+                                    >{{ old('description', $about->description) }}</textarea>
+                                    @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Description 2 -->
+                                <div class="mb-3">
+                                    <label class="form-label">Description 2</label>
+                                    <textarea
+                                        name="description2"
+                                        class="form-control @error('description2') is-invalid @enderror"
+                                        rows="4"
+                                    >{{ old('description2', $about->description2) }}</textarea>
+                                    @error('description2')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            <!--end::Body-->
+
+                            <!--begin::Footer-->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-save"></i> Update About
+                                </button>
+
+                                <a href="{{ route('about.index') }}" class="btn btn-secondary">
+                                    Back
+                                </a>
+                            </div>
+                            <!--end::Footer-->
+
+                        </form>
+                        <!--end::Form-->
                     </div>
-                    <!--end::Col-->
+
                 </div>
-                <!--end::Row-->
+                <!--end::Col-->
             </div>
-            <!--end::Container-->
+            <!--end::Row-->
         </div>
-        <!--end::App Content-->
-
-        <!-- Image Preview Script -->
-        <script>
-            function previewImage(event) {
-                const preview = document.getElementById('imagePreview');
-                preview.src = URL.createObjectURL(event.target.files[0]);
-                preview.style.display = 'block';
-            }
-        </script>
-    @endsection
-
-
+        <!--end::Container-->
+    </div>
+    <!--end::App Content-->
 @endsection

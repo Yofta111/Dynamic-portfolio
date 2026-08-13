@@ -243,7 +243,7 @@ header{
    ABOUT SECTION
    Bio copy, key stats and the decorative waveform graphic.
 ========================================================= */
-.about-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
+.about-grid{ display:grid; text-align: justify; gap:70px; }
 @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
 .about-copy p{ color:var(--text-dim); font-size:16px; margin-bottom:18px; max-width:560px; }
 .about-copy p strong{ color:var(--text); font-weight:600; }
@@ -252,10 +252,6 @@ header{
 .stat b{ font-family:var(--font-display); font-size:30px; display:block; }
 .stat span{ font-size:12px; color:var(--text-dim); font-family:var(--font-mono); }
 
-.waveform{ display:flex; align-items:flex-end; gap:3px; height:120px; }
-.waveform span{ flex:1; background:var(--surface-2); border-radius:1px; }
-.waveform span:nth-child(3n){ background:var(--accent); }
-.waveform span:nth-child(5n){ background:var(--accent-2); }
 
 /* =========================================================
    SKILLS SECTION

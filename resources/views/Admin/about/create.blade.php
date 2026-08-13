@@ -13,49 +13,43 @@
                     <div class="card card-primary card-outline mb-4">
                         <!--begin::Header-->
                         <div class="card-header">
-                            <div class="card-title">Create about</div>
-                        </div   >
+                            <div class="card-title">Create About Section</div>
+                        </div>
                         <!--end::Header-->
 
                         <!--begin::Form-->
-                        <form action="{{ route('about.store') }}"
-                              method="POST"
-                              enctype="multipart/form-data">
+                        <form action="{{ route('about.store') }}" method="POST">
                             @csrf
 
                             <!--begin::Body-->
                             <div class="card-body">
 
-                                <!-- Description -->
+                                <!-- Description 1 -->
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
+                                    <label class="form-label">Description 1</label>
                                     <textarea
                                         name="description"
                                         class="form-control @error('description') is-invalid @enderror"
                                         rows="4"
-                                        placeholder="Description"
+                                        placeholder="Yoftahe is a video editor and motion designer..."
                                     >{{ old('description') }}</textarea>
                                     @error('description')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                <!-- Image -->
+                                <!-- Description 2 -->
                                 <div class="mb-3">
-                                    <label class="form-label">about Image</label>
-                                    <input
-                                        type="file"
-                                        name="image"
-                                        class="form-control @error('image') is-invalid @enderror"
-                                        onchange="previewImage(event)"
-                                    >
-                                    @error('image')
+                                    <label class="form-label">Description 2</label>
+                                    <textarea
+                                        name="description2"
+                                        class="form-control @error('description2') is-invalid @enderror"
+                                        rows="4"
+                                        placeholder="The path started at Saint Joseph School..."
+                                    >{{ old('description2') }}</textarea>
+                                    @error('description2')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
-                                    <img id="imagePreview"
-                                         src=""
-                                         style="display:none; margin-top:10px; width:120px; height:80px; object-fit:cover; border-radius:6px;">
                                 </div>
 
                             </div>
@@ -64,11 +58,10 @@
                             <!--begin::Footer-->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-save"></i> Save about
+                                    <i class="bi bi-save"></i> Save About
                                 </button>
 
-                                <a href="{{ route('about.index') }}"
-                                   class="btn btn-secondary">
+                                <a href="{{ route('about.index') }}" class="btn btn-secondary">
                                     Back
                                 </a>
                             </div>
@@ -86,13 +79,4 @@
         <!--end::Container-->
     </div>
     <!--end::App Content-->
-
-    <!-- Image Preview Script -->
-    <script>
-        function previewImage(event) {
-            const preview = document.getElementById('imagePreview');
-            preview.src = URL.createObjectURL(event.target.files[0]);
-            preview.style.display = 'block';
-        }
-    </script>
 @endsection
