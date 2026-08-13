@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-            Schema::create('client_testimonials', function (Blueprint $table) {
-                $table->id();
-                $table->text('description')->nullable();
-                $table->string('footer')->nullable();
-                $table->timestamps();
-            });
+        Schema::create('skills', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('track')->default('A');
+            $table->string('clip_class')->default('v');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_testimonials');
+        Schema::dropIfExists('skills');
     }
 };

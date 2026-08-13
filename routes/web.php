@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\ClientTestimonialController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Skills;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyServicesController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,7 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/about/{id}/delete', [AboutController::class, 'delete'])->name('about.delete');
     });
 // all myServices
-Route::controller(MyServicesController::class)->group(function () {
+    Route::controller(MyServicesController::class)->group(function () {
     Route::get('/myServices', 'index')->name('myServices.index');                // List all myServices
     Route::get('/myServices/create', 'create')->name('myServices.create');       // Add myServices form
     Route::post('/myServices/store', 'store')->name('myServices.store');         // Save new myServices
@@ -69,16 +71,19 @@ Route::controller(MyServicesController::class)->group(function () {
     Route::post('/myServices/{id}', 'update')->name('myServices.update');        // Update existing myServices
     Route::get('/myServices/{id}', 'destroy')->name('myServices.delete');        // Delete myServices
 });
-// all clientTestimonial
-Route::controller(ClientTestimonialController::class)->group(function () {
-    Route::get('/clientTestimonial', 'index')->name('clientTestimonial.index');                // List all clientTestimonial
-    Route::get('/clientTestimonial/create', 'create')->name('clientTestimonial.create');       // Add clientTestimonial form
-    Route::post('/clientTestimonial/store', 'store')->name('clientTestimonial.store');         // Save new clientTestimonial
-    Route::get('/clientTestimonial/{id}/edit', 'edit')->name('clientTestimonial.edit');        // Edit clientTestimonial form
-    Route::post('/clientTestimonial/{id}', 'update')->name('clientTestimonial.update');        // Update existing clientTestimonial
-    Route::get('/clientTestimonial/{id}', 'destroy')->name('clientTestimonial.delete');        // Delete clientTestimonial
-});
 
+    Route::prefix('admin')->group(function () {
+        Route::get('/skills', [SkillsController::class, 'index'])->name('skills.index');
+        Route::get('/skills/create', [SkillsController::class, 'create'])->name('skills.create');
+        Route::post('/skills', [SkillsController::class, 'store'])->name('skills.store');
+        Route::get('/skills/{id}/edit', [SkillsController::class, 'edit'])->name('skills.edit');
+        Route::post('/skills/{id}', [SkillsController::class, 'update'])->name('skills.update');
+        Route::get('/skills/{id}/delete', [SkillsController::class, 'destroy'])->name('skills.delete');
+    });
+    Route::post('/contact/send', [ContactController::class, 'store'])->name('contact.store');
 
+//admin
+    Route::get('/messages', [ContactController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{id}', [ContactController::class, 'show'])->name('messages.show');
 });
 require __DIR__.'/auth.php';

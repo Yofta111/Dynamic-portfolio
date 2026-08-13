@@ -176,21 +176,21 @@
                     <a href="#" class="nav-link active">
                         <i class="bi bi-person-lines-fill"></i>
                         <p>
-                            Client Testimonial
+                            Skills
                             <i class="nav-arrow bi bi-chevron-right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('clientTestimonial.index')}}" class="nav-link active">
+                            <a href="{{route('skills.index')}}" class="nav-link active">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>All Client Testimonial</p>
+                                <p>All Skills</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('clientTestimonial.create')}}" class="nav-link">
+                            <a href="{{route('skills.create')}}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Create Client Testimonial</p>
+                                <p>Create Skill</p>
                             </a>
                         </li>
 

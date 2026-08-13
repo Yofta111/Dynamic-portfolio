@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<!--
-=================================================================
-  PORTFOLIO — MARKUP
-  ---------------------------------------------------------------
-  Author:  Yoftahe
-  Purpose: Structure for the single-page portfolio (Header, Hero,
-           About, Skills, Services, Work, Education, Contact,
-           Footer). Presentation lives in style.css, behavior
-           (theme switch, EN/AM translation, work grid, scrubber)
-           lives in script.js.
-  Note:    Text nodes tagged data-i18n are populated/overwritten
-           by script.js on load — edit copy in script.js's i18n
-           dictionary, not here, so both languages stay in sync.
-=================================================================
--->
-
 <html lang="en" data-theme="dark" data-lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body>
 
@@ -36,7 +23,7 @@
             <a href="#about" data-i18n="nav.about">About</a>
             <a href="#skills" data-i18n="nav.skills">Skills</a>
             <a href="#services" data-i18n="nav.services">Services</a>
-            <a href="#work" data-i18n="nav.work">Work</a>
+            <a href="#work" data-i18n="nav.work">Portfolios</a>
             <a href="#education" data-i18n="nav.education">Education</a>
             <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
@@ -57,7 +44,7 @@
 <main>
     <!-- HERO -->
     <!-- ------------------------------ HERO ------------------------------ -->
-    <section class="hero">
+    <section class="hero"  style="background:var(--surface);">
         <div class="wrap">
             <div class="hero-grid">
                 <div>
@@ -141,9 +128,8 @@
         </div>
         <div class="sprocket-rail right"></div>
     </section>
-
     <!-- SKILLS -->
-    <!-- ------------------------------ SKILLS ------------------------------ -->
+    <!-- ------------------------------- SKILLS ------------------------------- -->
     <section id="skills" style="background:var(--surface);">
         <div class="wrap">
             <div class="section-head">
@@ -153,27 +139,33 @@
                 </div>
             </div>
 
+            <!-- Track A -->
             <div class="track">
-                <div class="track-head"><span class="tag" style="background:var(--accent);"></span><span data-i18n="skills.track1">Track A — Video &amp; Motion</span></div>
+                <div class="track-head">
+                    <span class="tag" style="background:var(--accent);"></span>
+                    <span data-i18n="skills.track1">Track A — Video &amp; Motion</span>
+                </div>
                 <div class="track-body">
-                    <div class="clip v">Adobe Premiere Pro</div>
-                    <div class="clip v">After Effects</div>
-                    <div class="clip v">DaVinci Resolve</div>
-                    <div class="clip v">Motion Graphics</div>
-                    <div class="clip v">Color Grading</div>
-                    <div class="clip v">Sound Design</div>
-                    <div class="clip v">Storyboarding</div>
+                    @forelse($skills->where('track', 'A') as $skill)
+                        <div class="clip {{ $skill->clip_class }}">{{ $skill->name }}</div>
+                    @empty
+                        <p class="text-muted">No Track A skills added yet.</p>
+                    @endforelse
                 </div>
             </div>
+
+            <!-- Track B -->
             <div class="track">
-                <div class="track-head"><span class="tag" style="background:var(--accent-2);"></span><span data-i18n="skills.track2">Track B — Web &amp; Software</span></div>
+                <div class="track-head">
+                    <span class="tag" style="background:var(--accent-2);"></span>
+                    <span data-i18n="skills.track2">Track B — Web &amp; Software</span>
+                </div>
                 <div class="track-body">
-                    <div class="clip d">HTML / CSS / JS</div>
-                    <div class="clip d">Bootstrap</div>
-                    <div class="clip d">Laravel</div>
-                    <div class="clip d">PHP</div>
-                    <div class="clip d">Java / OOP</div>
-                    <div class="clip d">Git</div>
+                    @forelse($skills->where('track', 'B') as $skill)
+                        <div class="clip {{ $skill->clip_class }}">{{ $skill->name }}</div>
+                    @empty
+                        <p class="text-muted">No Track B skills added yet.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -207,7 +199,7 @@
 
     <!-- WORK -->
     <!-- ------------------------------- WORK ------------------------------- -->
-    <section id="work">
+    <section id="work"  style="background:var(--surface);">
         <div class="wrap">
             <div class="section-head">
                 <div>
@@ -278,54 +270,174 @@
             </div>
         </div>
     </section>
-
     <!-- CONTACT -->
     <!-- ------------------------------ CONTACT ----------------------------- -->
-    <section id="contact" style="background:var(--surface);">
+    <section id="contact"  style="background:var(--surface);">
         <div class="wrap">
-            <div class="section-head">
+            <div class="section-head" >
                 <div>
                     <div class="eyebrow" data-i18n="contact.eyebrow">06 · Contact</div>
                     <h2 class="section-title display" data-i18n="contact.title">Let's cut something together.</h2>
                 </div>
             </div>
-            <div class="contact-grid">
-                <form onsubmit="return false;">
-                    <div class="field">
-                        <label data-i18n="contact.name">Name</label>
-                        <input type="text" placeholder="Your name">
+
+            <div class="contact-cards" >
+                <!-- Contact Info card -->
+                <div class="contact-card">
+                    <h3 class="contact-card-title" data-i18n="contact.info.title">Contact Info</h3> <br>
+                    <p class="contact-card-sub" data-i18n="contact.info.sub">Reach out directly — I usually reply within a day or two.</p>
+
+                    <div class="info-row">
+          <span class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a4 4 0 0 1-4 4H8l-4 4V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+          </span>
+                        <div>
+                            <h4 data-i18n="contact.phone.label">Phone Number</h4>
+                            <p><a href="tel:+251900000000">+251 915771277</a></p>
+                        </div>
                     </div>
-                    <div class="field">
-                        <label data-i18n="contact.email">Email</label>
-                        <input type="email" placeholder="you@email.com">
+
+                    <div class="info-row">
+          <span class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </span>
+                        <div>
+                            <h4 data-i18n="contact.email.label">Email Address</h4>
+                            <p><a href="mailto:yoftaraya@gmail.com">yoftaraya@gmail.com</a></p>
+                        </div>
                     </div>
-                    <div class="field">
-                        <label data-i18n="contact.msg">Message</label>
-                        <textarea placeholder="Tell me about the project…"></textarea>
+
+                    <div class="info-row">
+          <span class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L2 11.5l7 2.2M22 3L15.5 21l-6.5-7.3M22 3L9 14.7"/></svg>
+          </span>
+                        <div>
+                            <h4 data-i18n="contact.channels">Channels</h4>
+                            <p><a href="https://t.me/yoftahe" target="_blank" rel="noopener">Telegram · @yofta10</a></p>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">▶ Send Message</button>
-                </form>
-                <ul class="contact-list">
-                    <li><span data-i18n="contact.email.label">Email</span><a href="mailto:hello@example.com">hello@example.com</a></li>
-                    <li><span data-i18n="contact.phone.label">Phone</span><a href="tel:+251900000000">+251 90 000 0000</a></li>
-                    <li><span>Instagram</span><a href="#">@yoftahe</a></li>
-                    <li><span>LinkedIn</span><a href="#">/in/yoftahe</a></li>
-                    <li><span>Vimeo</span><a href="#">vimeo.com/yoftahe</a></li>
-                </ul>
+                </div>
+
+                <!-- Get In Touch form card -->
+                <div class="contact-card">
+                    <h3 class="contact-card-title" data-i18n="contact.form.title">Get In Touch</h3>
+                    <p class="contact-card-sub" data-i18n="contact.form.sub">Tell me a bit about the project and I'll get back to you.</p>
+
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
+
+                        <!-- Honeypot Field (Spam Protection) -->
+                        <div style="display: none !important;">
+                            <input type="text" name="website" value="" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="field-row">
+                            <!-- Name Field -->
+                            <div class="field">
+                                <input type="text" name="name" data-i18n-placeholder="contact.name" placeholder="Your Name" value="{{ old('name') }}" required>
+                                @error('name')
+                                <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="field">
+                                <input type="email" name="email" data-i18n-placeholder="contact.email" placeholder="Your Email" value="{{ old('email') }}" required>
+                                @error('email')
+                                <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Subject Field -->
+                        <div class="field">
+                            <input type="text" name="subject" data-i18n-placeholder="contact.subject" placeholder="Subject" value="{{ old('subject') }}">
+                            @error('subject')
+                            <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Message Field -->
+                        <div class="field">
+                            <textarea name="message" data-i18n-placeholder="contact.msg" placeholder="Message" required>{{ old('message') }}</textarea>
+                            @error('message')
+                            <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-center" data-i18n="contact.send">▶ Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
-</main>
 
+</main>
 
 <!-- =============================== FOOTER =================================== -->
 <footer>
-    <div class="wrap footer-row">
-        <span>© 2026 YOFTAHE — <span data-i18n="footer.rights">ALL FRAMES RESERVED</span></span>
-        <span data-i18n="footer.made">DESIGNED &amp; CUT BY YOFTAHE</span>
+    <div class="wrap footer-bottom">
+        <p class="footer-copy">© 2026 YOFTAHE — <span data-i18n="footer.rights">ALL FRAMES RESERVED</span></p>
+
+        <div class="footer-social">
+            <a href="https://t.me/Yofta10" target="_blank" rel="noopener" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3L2 11.5l7 2.2M22 3L15.5 21l-6.5-7.3M22 3L9 14.7"/></svg>
+            </a>
+            <a href="https://github.com/Yofta111" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6" r="2.4"/><circle cx="17" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7 8.4V12a4 4 0 0 0 4 4M17 8.4V12a4 4 0 0 0-4 4"/></svg>
+            </a>
+            <a href="https://www.instagram.com/yofta111" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="2"/><path d="M8 11v9M14 20v-5a3 3 0 0 1 6 0v5M14 13v7"/></svg>
+            </a>
+        </div>
+
+        <p class="footer-made" data-i18n="footer.made">DESIGNED &amp; CUT BY YOFTAHE</p>
     </div>
 </footer>
 
 <script src="{{ asset('frontend/js/script.js') }}"></script>
+<!-- jQuery (Required by Toastr) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Global Toastr Configurations & Trigger -->
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    @if(session('success'))
+    toastr.success("{{ session('success') }}", "Success!");
+    @endif
+
+    @if(session('error'))
+    toastr.error("{{ session('error') }}", "Error!");
+    @endif
+
+    @if(session('info'))
+    toastr.info("{{ session('info') }}", "Notice");
+    @endif
+
+    @if(session('warning'))
+    toastr.warning("{{ session('warning') }}", "Warning!");
+    @endif
+</script>
 </body>
 </html>
